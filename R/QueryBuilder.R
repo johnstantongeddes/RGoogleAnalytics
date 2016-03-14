@@ -23,6 +23,7 @@ QueryBuilder <- function(query.params.list) {
   sort         <- query.params.list$sort
   filters      <- query.params.list$filters
   max.results  <- query.params.list$max.results
+  sampling.level <- query.params.list$sampling.level
   start.index  <- query.params.list$start.index
   table.id     <- query.params.list$table.id
   
@@ -35,7 +36,6 @@ QueryBuilder <- function(query.params.list) {
   
   SetQueryParams <- function() {   
     
-    
     StartDate(start.date)
     EndDate(end.date)
     Dimensions(dimensions)
@@ -44,6 +44,7 @@ QueryBuilder <- function(query.params.list) {
     Sort(sort)
     Filters(filters)
     MaxResults(max.results)
+    SamplingLevel(sampling.level)
     StartIndex(start.index)
     TableID(table.id)
     AccessToken(access_token)
@@ -506,6 +507,29 @@ QueryBuilder <- function(query.params.list) {
     return(invisible())
   }
   
+  
+  SamplingLevel <- function(sampling.level.param = NA) {
+    # unset the parameter if the value NULL is used
+    if (is.null(sampling.level.param)) {
+      sampling.level <<- NULL
+      return(invisible())
+    }
+    
+    # returns the current segmentLevel value if no parameter is used
+    if (is.na(sampling.level.param[1])) {
+      return(sampling.level)
+    }
+    
+    # Error handling.
+    # ensure that sampling.level is one of allowed options
+    if(!sampling.level.param %in% c("DEFAULT", "FASTER", "HIGHER_PRECISION")) {
+      stop("segment_level must be one of DEFAULT, FASTER or HIGHER_PRECISION")
+    }
+}
+  
+  
+  
+  
   #' Sets the table id for a user.
   #' Optional.
   #' 
@@ -664,6 +688,7 @@ QueryBuilder <- function(query.params.list) {
     sort        <<- NULL
     filters     <<- NULL
     max.results <<- NULL
+    sampling.level <<- NULL
     start.index <<- NULL
     table.id    <<- NULL
     return(invisible())
@@ -743,23 +768,24 @@ QueryBuilder <- function(query.params.list) {
   
   
   
-  return(list("dimensions"   =   Dimensions,
-              "metrics"      =   Metrics,
-              "sort"         =   Sort,
-              "segments"     =   Segment,
-              "filters"      =   Filters,
-              "max.results"  =   MaxResults,
-              "start.index"  =   StartIndex,
-              "table.id"     =   TableID,
-              "start.date"   =   StartDate,
-              "end.date"     =   EndDate,
-              "clear.data"   =   ClearData,
-              "Validate"     =   Validate,
-              "access_token" =   AccessToken,
-              "GetStartDate"  = GetStartDate,
-              "GetEndDate" = GetEndDate,
-              "SetEndDate" = SetEndDate,
-              "SetStartDate" = SetStartDate,
+  return(list("dimensions"     = Dimensions,
+              "metrics"        = Metrics,
+              "sort"           = Sort,
+              "segments"       = Segment,
+              "filters"        = Filters,
+              "max.results"    = MaxResults,
+              "sampling.level" = SamplingLevel,
+              "start.index"    = StartIndex,
+              "table.id"       = TableID,
+              "start.date"     = StartDate,
+              "end.date"       = EndDate,
+              "clear.data"     = ClearData,
+              "Validate"       = Validate,
+              "access_token"   = AccessToken,
+              "GetStartDate"   = GetStartDate,
+              "GetEndDate"     = GetEndDate,
+              "SetEndDate"     = SetEndDate,
+              "SetStartDate"   = SetStartDate,
               "SetQueryParams" = SetQueryParams,
-              "SetStartIndex" = SetStartIndex))
+              "SetStartIndex"  = SetStartIndex))
 }

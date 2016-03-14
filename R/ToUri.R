@@ -18,6 +18,7 @@ ToUri <- function(query.builder,token) {
              "sort"        = query.builder$sort(),
              "filters"     = query.builder$filters(),
              "max.results" = query.builder$max.results(),
+             "sampling.level" = query.builder$sampling.level(),
              "start.index" = query.builder$start.index(),
              "table.id"    = query.builder$table.id(),
              "access_token" = token$credentials$access_token)
@@ -33,6 +34,7 @@ ToUri <- function(query.builder,token) {
                        sort        = "sort",
                        filters     = "filters",
                        max.results = "max-results",
+                       sampling.level = "samplingLevel",
                        start.index = "start-index",
                        table.id    = "ids",
                        access_token = "access_token")

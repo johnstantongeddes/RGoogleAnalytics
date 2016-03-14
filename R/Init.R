@@ -27,6 +27,8 @@
 #' @param max.results Optional.Maximum Number of rows to include in the query response. Default value is 
 #' 10000
 #' 
+#' @param sampling.level Optional. Sampling level for the reporting. Options described at \url{https://developers.google.com/analytics/devguides/reporting/core/v3/reference#samplingLevel}
+#' 
 #' @param table.id Profile ID of the form ga:XXXXX where XXXXX is the Analytics View (Profile) ID of 
 #' for which the query will retrieve the data. The View ID can be found under View Settings by navigating 
 #' to the Admin Tab under your Google Analytics Profile
@@ -48,19 +50,21 @@ Init <- function(
   sort = NULL,
   segments = NULL,
   max.results = NULL,
+  sampling.level = NULL,
   start.index = NULL,
   table.id = NULL){
   
   query.params.list = list("start.date" = start.date,
-                 "end.date" = end.date,
-                 "dimensions" = dimensions,
-                 "metrics" = metrics,
-                 "filters" = filters,
-                 "sort" = sort,
-                 "segments" = segments,
-                 "max.results" = max.results,
-                 "start.index" = start.index,
-                 "table.id" = table.id)
+                           "end.date" = end.date,
+                           "dimensions" = dimensions,
+                           "metrics" = metrics,
+                           "filters" = filters,
+                           "sort" = sort,
+                           "segments" = segments,
+                           "max.results" = max.results,
+                           "sampling.level" = sampling.level,
+                           "start.index" = start.index,
+                           "table.id" = table.id)
   
   return(query.params.list)
 }
