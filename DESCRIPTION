@@ -3,7 +3,8 @@ Version: 0.1.1
 Date: 2014-08-16
 Title: R Wrapper for the Google Analytics API
 Author: Michael Pearmain. Contributions from Nick Mihailowski,
-    Vignesh Prajapati, Kushan Shah and Nicolas Remy
+    Vignesh Prajapati, Kushan Shah, Nicolas Remy, 
+    person("John", "Stanton-Geddes", email = "john.stantongeddes.research@gmail.com", role = c("ctb"))
 Description: Provides functions for accessing and retrieving data from the
     Google Analytics API
 Maintainer: Kushan Shah <kushan@tatvic.com>
@@ -17,3 +18,4 @@ Suggests:
 License: Apache License 2.0
 NeedsCompilation: no
 Repository: CRAN
+RoxygenNote: 5.0.1
